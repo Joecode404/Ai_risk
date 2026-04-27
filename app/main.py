@@ -8,9 +8,7 @@ from risk_engine import RiskEngine
 from utils import ensure_pil_image
 
 
-# -----------------------------
 # PATHS
-# -----------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
@@ -19,9 +17,7 @@ HUMAN_MODEL_PATH = os.path.join(MODELS_DIR, "ai_image_detector_model_improved_co
 YOLO_MODEL_PATH = os.path.join(MODELS_DIR, "yolov8n.pt")
 
 
-# -----------------------------
 # LOAD MODELS
-# -----------------------------
 general_detector = AIDetector(
     model_path=GENERAL_MODEL_PATH,
     class_names=["fake", "real"]
@@ -36,9 +32,7 @@ object_detector = ObjectDetector(model_path=YOLO_MODEL_PATH)
 risk_engine = RiskEngine()
 
 
-# -----------------------------
 # MAIN ANALYSIS FUNCTION
-# -----------------------------
 def analyse_image(image):
     image = ensure_pil_image(image)
 
@@ -103,9 +97,7 @@ def analyse_image(image):
     return result_text
 
 
-# -----------------------------
 # INTERFACE
-# -----------------------------
 demo = gr.Interface(
     fn=analyse_image,
     inputs=gr.Image(type="pil", label="Upload or drag-and-drop an image"),
@@ -115,8 +107,6 @@ demo = gr.Interface(
 )
 
 
-# -----------------------------
 # RUN APP
-# -----------------------------
 if __name__ == "__main__":
-    demo.launch(inbrowser=True)
+    demo.launch(server_name="0.0.0.0", server_port=7860)
