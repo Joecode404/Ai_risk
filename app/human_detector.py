@@ -13,7 +13,7 @@ def download_model():
         os.makedirs("models", exist_ok=True)
 
         url = "https://drive.google.com/uc?id=1fDPc8Ff3pkhimQMWz5lyZ21EFCSf4HxN"
-        gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
+        gdown.download(url, MODEL_PATH, quiet=False)
 
 
 class HumanDetector:
