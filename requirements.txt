@@ -1,9 +1,9 @@
-gdown
-gradio
 torch
 torchvision
 timm
+gradio
 ultralytics
 pillow
 numpy
 opencv-python-headless
+gdown
