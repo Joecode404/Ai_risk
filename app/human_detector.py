@@ -3,7 +3,19 @@ import torch.nn.functional as F
 import timm
 from PIL import Image
 from torchvision import transforms
+import os
+import gdown
 
+MODEL_PATH = "models/ai_image_detector_model_improved_convnext.pth"
+
+def download_model():
+    if not os.path.exists(MODEL_PATH):
+        os.makedirs("models", exist_ok=True)
+
+        url = "https://drive.google.com/uc?id=1fDPc8Ff3pkhimQMWz5lyZ21EFCSf4HxN"
+        gdown.download(url, MODEL_PATH, quiet=False fuzzy=True)
+
+download_model()
 
 class HumanDetector:
     """
