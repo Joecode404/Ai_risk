@@ -10,13 +10,12 @@ MODEL_PATH = "models/ai_image_detector_model.pth"
 
 def download_model():
     if not os.path.exists(MODEL_PATH):
-        print("Downloading general AI model...")
 
         os.makedirs("models", exist_ok=True)
 
         url = "https://drive.google.com/uc?id=130UA5SAz_hsWhrciKEc4KfdvTEQwGmBo"
 
-        gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
+        gdown.download(url, MODEL_PATH, quiet=False)
 
 download_model()
 
