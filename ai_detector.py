@@ -3,7 +3,36 @@ import torch.nn.functional as F
 from PIL import Image
 from torchvision import transforms
 from transformers import ConvNextForImageClassification, AutoImageProcessor
+import os
+import gdown 
 
+def download_model_if_needed(file_id, save_path):
+    """
+    Downloads a file from Google Drive if it does not exist.
+    """
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+    if os.path.exists(save_path):
+        print(f"Model already exists: {save_path}")
+        return save_path
+
+    print(f"Downloading model to {save_path}...")
+
+    url = f"https://drive.google.com/uc?id={file_id}"
+
+    gdown.download(url, save_path, quiet=False)
+
+    if not os.path.exists(save_path):
+        raise RuntimeError("Download failed")
+
+    print("Download complete.")
+    return save_path
+
+AI_MODEL_PATH = download_model_if_needed(
+    file_id="1g1oNElCgndnNXhJ2qcOlLjmOIWkucrTu",
+    save_path="models/improved_AI_Generated.pt"
+)
+model = AIDetector(model_path=AI_MODEL_PATH)
 
 class AIDetector:
     """
