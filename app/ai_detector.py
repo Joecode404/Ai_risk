@@ -4,6 +4,22 @@ from PIL import Image
 from torchvision import transforms
 from transformers import ConvNextForImageClassification, AutoImageProcessor
 
+MODEL_PATH = "models/ai_image_detector_model_improved_convnext.pth"
+MODEL_URL = "https://drive.google.com/uc?id=1fDPc8Ff3pkhimQMWz5lyZ21EFCSf4HxN"
+
+
+def download_model():
+    if not os.path.exists(MODEL_PATH):
+        print("Downloading human detector model...")
+        os.makedirs("models", exist_ok=True)
+        gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+
+    if not os.path.exists(MODEL_PATH):
+        raise FileNotFoundError(f"Model download failed: {MODEL_PATH}")
+
+
+download_model()
+
 
 class AIDetector:
     """
