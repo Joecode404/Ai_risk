@@ -1,9 +1,11 @@
 torch
 torchvision
-timm
-gradio
-ultralytics
+transformers
+accelerate
 pillow
+gradio
 numpy
-opencv-python-headless
+scikit-learn
+tqdm
 gdown
+timm
